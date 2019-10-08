@@ -1,0 +1,24 @@
+<h2><%= @city.name%></h2>
+<h3>Restaurants</h3>
+<ul>
+<%= for restaurant <- @city.restaurants do %>
+<h4><%= link restaurant.name, to: country_city_restaurant_path(@conn, :show, @city.id, @city.country.id, restaurant.id) %></h4>
+<p>cuisine: <%= restaurant.cuisine %></p>
+<p>notes: <%= restaurant.description %>
+<% end %>
+</ul>
+
+
+<h3>Add a restaurant</h3>
+<%= form_for @restaurant_changeset, country_city_restaurant_path(@conn, :create, @city.country.id, @city.id), fn f -> %>
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= label f, :cuisine %>
+  <%= text_input f, :cuisine %>
+  <%= label f, :description %>
+  <%= textarea f, :description %>
+  <%= error_tag f, :body %>
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>

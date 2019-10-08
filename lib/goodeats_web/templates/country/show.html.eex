@@ -1,0 +1,22 @@
+<h2><%= @country.name%></h2>
+<h3>Cities</h3>
+<ul>
+<%= for city <- @country.cities do %>
+  <li>
+    <%= link city.name, to: country_city_path(@conn, :show, @country.id, city) %>
+  </li>
+<% end %>
+</ul>
+
+<h3>Add a City</h3>
+<%= form_for @city_changeset, country_city_path(@conn, :create, @country), fn f -> %>
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= error_tag f, :body %>
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>
+
+<span><%= link "Edit", to: country_path(@conn, :edit, @country) %></span>
+<span><%= link "Back", to: country_path(@conn, :index) %></span>
