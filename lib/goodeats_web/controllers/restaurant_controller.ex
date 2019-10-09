@@ -2,6 +2,7 @@ defmodule GoodeatsWeb.RestaurantController do
   use GoodeatsWeb, :controller
 
   alias Goodeats.Blog
+  alias Goodeats.Blog.Restaurant
 
   def create(conn, %{
         "country_id" => _country_id,

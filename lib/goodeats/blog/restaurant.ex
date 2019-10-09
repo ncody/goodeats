@@ -14,7 +14,7 @@ defmodule Goodeats.Blog.Restaurant do
   end
 
   @doc false
-  def changeset(restaurant, attrs) do
+  def changeset(restaurant, attrs \\ %{}) do
     restaurant
     |> cast(attrs, [:name, :cuisine, :description, :tried, :rating])
     |> validate_required([:name, :cuisine, :tried, :rating])

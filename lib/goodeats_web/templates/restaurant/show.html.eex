@@ -1,3 +1,4 @@
 <h1><%= @restaurant.name %></h1>
+<p>location: <%= @restaurant.city.name %>, <%= @restaurant.city.country.name %>
 <p>cuisine: <%= @restaurant.cuisine %></p>
 <p>notes: <%= @restaurant.description %>

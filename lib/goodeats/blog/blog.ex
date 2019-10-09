@@ -6,7 +6,7 @@ defmodule Goodeats.Blog do
   import Ecto.Query, warn: false
   alias Goodeats.Repo
 
-  alias Goodeats.Blog.Country
+  alias Goodeats.Blog.{Country, Restaurant}
 
   @doc """
   Returns the list of countries.
@@ -237,7 +237,16 @@ defmodule Goodeats.Blog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_restaurant!(id), do: Repo.get!(Restaurant, id)
+  def get_restaurant!(id) do
+    Repo.one(
+      from(restaurant in Restaurant,
+        where: restaurant.id == ^id,
+        left_join: city in assoc(restaurant, :city),
+        left_join: country in assoc(city, :country),
+        preload: [city: {city, country: country}]
+      )
+    )
+  end
 
   @doc """
   Creates a restaurant.
