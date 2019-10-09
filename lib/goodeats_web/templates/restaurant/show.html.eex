@@ -2,3 +2,5 @@
 <p>location: <%= @restaurant.city.name %>, <%= @restaurant.city.country.name %>
 <p>cuisine: <%= @restaurant.cuisine %></p>
 <p>notes: <%= @restaurant.description %>
+
+<span><%= link "Back", to: country_city_path(@conn, :show, @restaurant.city.country.id, @restaurant.city) %></span>

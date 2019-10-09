@@ -22,3 +22,5 @@
     <%= submit "Save" %>
   </div>
 <% end %>
+
+<span><%= link "Back", to: country_path(@conn, :show, @city.country) %></span>
