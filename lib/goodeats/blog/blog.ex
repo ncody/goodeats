@@ -253,7 +253,7 @@ defmodule Goodeats.Blog do
 
   ## Examples
 
-      iex> create_restaurant(%{field: value})
+      iex> create_restaurant(city, %{field: value})
       {:ok, %Restaurant{}}
 
       iex> create_restaurant(%{field: bad_value})

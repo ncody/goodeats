@@ -64,11 +64,12 @@ defmodule Goodeats.BlogTest do
   end
 
   describe "cities" do
-    alias Goodeats.Blog.City
+    alias Goodeats.Blog.{Country, City}
 
     @valid_attrs %{name: "some name"}
     @update_attrs %{name: "some updated name"}
     @invalid_attrs %{name: nil}
+    @country %Country{name: "country name"}
 
     def city_fixture(attrs \\ %{}) do
       {:ok, city} =
@@ -89,13 +90,13 @@ defmodule Goodeats.BlogTest do
       assert Blog.get_city!(city.id) == city
     end
 
-    test "create_city/1 with valid data creates a city" do
-      assert {:ok, %City{} = city} = Blog.create_city(@valid_attrs)
+    test "create_city/2 with valid data creates a city" do
+      assert {:ok, %City{} = city} = Blog.create_city(@country, @valid_attrs)
       assert city.name == "some name"
     end
 
-    test "create_city/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Blog.create_city(@invalid_attrs)
+    test "create_city/2 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Blog.create_city(@country, @invalid_attrs)
     end
 
     test "update_city/2 with valid data updates the city" do
@@ -124,11 +125,24 @@ defmodule Goodeats.BlogTest do
   end
 
   describe "restaurants" do
-    alias Goodeats.Blog.Restaurant
+    alias Goodeats.Blog.{Restaurant, City}
 
-    @valid_attrs %{cuisine: "some cuisine", description: "some description", name: "some name", rating: 42, tried: true}
-    @update_attrs %{cuisine: "some updated cuisine", description: "some updated description", name: "some updated name", rating: 43, tried: false}
+    @valid_attrs %{
+      cuisine: "some cuisine",
+      description: "some description",
+      name: "some name",
+      rating: 42,
+      tried: true
+    }
+    @update_attrs %{
+      cuisine: "some updated cuisine",
+      description: "some updated description",
+      name: "some updated name",
+      rating: 43,
+      tried: false
+    }
     @invalid_attrs %{cuisine: nil, description: nil, name: nil, rating: nil, tried: nil}
+    @city %City{name: "city name"}
 
     def restaurant_fixture(attrs \\ %{}) do
       {:ok, restaurant} =
@@ -149,8 +163,8 @@ defmodule Goodeats.BlogTest do
       assert Blog.get_restaurant!(restaurant.id) == restaurant
     end
 
-    test "create_restaurant/1 with valid data creates a restaurant" do
-      assert {:ok, %Restaurant{} = restaurant} = Blog.create_restaurant(@valid_attrs)
+    test "create_restaurant/2 with valid data creates a restaurant" do
+      assert {:ok, %Restaurant{} = restaurant} = Blog.create_restaurant(@city, @valid_attrs)
       assert restaurant.cuisine == "some cuisine"
       assert restaurant.description == "some description"
       assert restaurant.name == "some name"
@@ -158,8 +172,8 @@ defmodule Goodeats.BlogTest do
       assert restaurant.tried == true
     end
 
-    test "create_restaurant/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Blog.create_restaurant(@invalid_attrs)
+    test "create_restaurant/2 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Blog.create_restaurant(@city, @invalid_attrs)
     end
 
     test "update_restaurant/2 with valid data updates the restaurant" do
