@@ -72,10 +72,9 @@ defmodule Goodeats.BlogTest do
     @country %Country{name: "country name"}
 
     def city_fixture(attrs \\ %{}) do
-      {:ok, city} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Blog.create_city()
+      attributes = Enum.into(attrs, @valid_attrs)
+
+      {:ok, city} = Blog.create_city(@country, attributes)
 
       city
     end
@@ -132,23 +131,22 @@ defmodule Goodeats.BlogTest do
       description: "some description",
       name: "some name",
       rating: 42,
-      tried: true
+      tried: "yes"
     }
     @update_attrs %{
       cuisine: "some updated cuisine",
       description: "some updated description",
       name: "some updated name",
       rating: 43,
-      tried: false
+      tried: "no"
     }
     @invalid_attrs %{cuisine: nil, description: nil, name: nil, rating: nil, tried: nil}
     @city %City{name: "city name"}
 
     def restaurant_fixture(attrs \\ %{}) do
-      {:ok, restaurant} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Blog.create_restaurant()
+      attributes = Enum.into(attrs, @valid_attrs)
+
+      {:ok, restaurant} = Blog.create_restaurant(@city, attributes)
 
       restaurant
     end
@@ -169,7 +167,7 @@ defmodule Goodeats.BlogTest do
       assert restaurant.description == "some description"
       assert restaurant.name == "some name"
       assert restaurant.rating == 42
-      assert restaurant.tried == true
+      assert restaurant.tried == "yes"
     end
 
     test "create_restaurant/2 with invalid data returns error changeset" do
@@ -184,7 +182,7 @@ defmodule Goodeats.BlogTest do
       assert restaurant.description == "some updated description"
       assert restaurant.name == "some updated name"
       assert restaurant.rating == 43
-      assert restaurant.tried == false
+      assert restaurant.tried == "no"
     end
 
     test "update_restaurant/2 with invalid data returns error changeset" do
