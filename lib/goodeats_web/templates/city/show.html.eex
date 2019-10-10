@@ -19,20 +19,6 @@
     <% end %>
   </ul>
 
-<h3>Can't find the restaurant you are looking for? Add it here</h3>
-<%= form_for @restaurant_changeset, country_city_restaurant_path(@conn, :create, @city.country.id, @city.id), fn f -> %>
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= label f, :cuisine %>
-  <%= text_input f, :cuisine %>
-  <%= label f, :description %>
-  <%= textarea f, :description %>
-  <%= label f, :have_you_eaten_here %>
-  <%= select f, :tried, ["no", "yes", "want to try"] %>
-  <%= error_tag f, :body %>
-  <div>
-    <%= submit "Save" %>
-  </div>
-<% end %>
+<p>Can't find the restaurant you are looking for? <%= link "Add it here", to: country_city_restaurant_path(@conn, :new, @city.id, @city.country.id) %></p>
 
 <span><%= link "Back", to: country_path(@conn, :show, @city.country) %></span>

@@ -4,6 +4,13 @@ defmodule GoodeatsWeb.RestaurantController do
   alias Goodeats.Blog
   alias Goodeats.Blog.Restaurant
 
+  def new(conn, %{"city_id" => city_id}) do
+    city = Blog.get_city!(city_id)
+    changeset = Blog.change_restaurant(%Restaurant{})
+    render(conn, "new.html", changeset: changeset, city: city)
+  end
+
+  @spec create(Plug.Conn.t(), map) :: Plug.Conn.t()
   def create(conn, %{
         "country_id" => _country_id,
         "city_id" => city_id,

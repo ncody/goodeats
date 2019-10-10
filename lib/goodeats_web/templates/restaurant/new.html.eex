@@ -1,0 +1,15 @@
+<p>new restaurant in <%= @city.name %>
+<%= form_for @changeset, country_city_restaurant_path(@conn, :create, @city.country.id, @city.id), fn f -> %>
+  <%= label f, :name %>
+  <%= text_input f, :name %>
+  <%= label f, :cuisine %>
+  <%= text_input f, :cuisine %>
+  <%= label f, :description %>
+  <%= textarea f, :description %>
+  <%= label f, :have_you_eaten_here %>
+  <%= select f, :tried, ["no", "yes", "want to try"] %>
+  <%= error_tag f, :body %>
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>
