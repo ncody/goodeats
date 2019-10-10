@@ -1,12 +1,14 @@
 <h2><%= @country.name%></h2>
-<h3>Cities</h3>
-<ul>
-<%= for city <- @country.cities do %>
-  <li>
-    <%= link city.name, to: country_city_path(@conn, :show, @country.id, city) %>
-  </li>
+<%= if has_cities?(@country) do  %>
+  <h3>Cities</h3>
+  <ul>
+  <%= for city <- @country.cities do %>
+    <li>
+      <%= link city.name, to: country_city_path(@conn, :show, @country.id, city) %>
+    </li>
+  <% end %>
+  </ul>
 <% end %>
-</ul>
 
 <h3>Add a City</h3>
 <%= form_for @city_changeset, country_city_path(@conn, :create, @country), fn f -> %>
