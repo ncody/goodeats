@@ -1,17 +1,25 @@
 <h2><%= @city.name%></h2>
-<%= if has_restaurants?(@city) do %>
-  <h3>Restaurants</h3>
+
+<h3>Restaurants you have tried:</h3>
   <ul>
-    <%= for restaurant <- @city.restaurants do %>
-      <h4><%= link restaurant.name, to: country_city_restaurant_path(@conn, :show, @city.id, @city.country.id, restaurant.id) %></h4>
-      <p>cuisine: <%= restaurant.cuisine %></p>
-      <p>notes: <%= restaurant.description %>
+    <%= for restaurant <- tried_restaurants(@city) do %>
+      <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city %>
     <% end %>
   </ul>
-<% end %>
+<h3>Restaurants you want to try:</h3>
+  <ul>
+    <%= for restaurant <- want_to_try_restaurants(@city) do %>
+      <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city %>
+    <% end %>
+  </ul>
+<h3>Explore other restaurants in <%= @city.name %>:</h3>
+  <ul>
+    <%= for restaurant <- other_restaurants(@city) do %>
+      <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city %>
+    <% end %>
+  </ul>
 
-
-<h3>Add a restaurant</h3>
+<h3>Can't find the restaurant you are looking for? Add it here</h3>
 <%= form_for @restaurant_changeset, country_city_restaurant_path(@conn, :create, @city.country.id, @city.id), fn f -> %>
   <%= label f, :name %>
   <%= text_input f, :name %>
