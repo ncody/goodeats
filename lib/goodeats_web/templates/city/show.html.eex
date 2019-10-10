@@ -17,6 +17,8 @@
   <%= text_input f, :cuisine %>
   <%= label f, :description %>
   <%= textarea f, :description %>
+  <%= label f, :have_you_eaten_here %>
+  <%= select f, :tried, ["no", "yes", "want to try"] %>
   <%= error_tag f, :body %>
   <div>
     <%= submit "Save" %>
