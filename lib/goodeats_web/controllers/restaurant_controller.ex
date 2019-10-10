@@ -28,4 +28,33 @@ defmodule GoodeatsWeb.RestaurantController do
     restaurant = Blog.get_restaurant!(id)
     render(conn, "show.html", restaurant: restaurant)
   end
+
+  def edit(conn, %{"id" => id}) do
+    restaurant = Blog.get_restaurant!(id)
+    changeset = Blog.change_restaurant(restaurant)
+    render(conn, "edit.html", restaurant: restaurant, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "restaurant" => restaurant_params}) do
+    restaurant = Blog.get_restaurant!(id)
+
+    case Blog.update_restaurant(restaurant, restaurant_params) do
+      {:ok, restaurant} ->
+        conn
+        |> put_flash(:info, "Restaurant succssfully updated")
+        |> redirect(
+          to:
+            country_city_restaurant_path(
+              conn,
+              :show,
+              restaurant.city.country.id,
+              restaurant.city.id,
+              restaurant.id
+            )
+        )
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", restaurant: restaurant, changeset: changeset)
+    end
+  end
 end

@@ -1,0 +1,25 @@
+<h2>Edit</h2>
+<%= form_for @changeset, country_city_restaurant_path(@conn, :update, @restaurant.city.country.id, @restaurant. city.id, @restaurant.id), fn f -> %>
+
+  <div class="form-group">
+    <%= label f, :name, class: "control-label" %>
+    <%= text_input f, :name, class: "form-control" %>
+    <%= error_tag f, :name %>
+  </div>
+  <div class="form-group">
+    <%= label f, :cuisine, class: "control-label" %>
+    <%= text_input f, :cuisine, class: "form-control" %>
+    <%= error_tag f, :cuisine %>
+  </div>
+    <div class="form-group">
+    <%= label f, :description, class: "control-label" %>
+    <%= textarea f, :description, class: "form-control" %>
+    <%= error_tag f, :description %>
+  </div>
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link "Back", to: country_city_restaurant_path(@conn, :show, @restaurant.city.id, @restaurant.city.country.id, @restaurant.id) %>
+
