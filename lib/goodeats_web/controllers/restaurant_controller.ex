@@ -33,7 +33,14 @@ defmodule GoodeatsWeb.RestaurantController do
 
   def show(conn, %{"id" => id}) do
     restaurant = Blog.get_restaurant!(id)
-    render(conn, "show.html", restaurant: restaurant)
+
+    case restaurant do
+      nil ->
+        render(conn, "missing.html")
+
+      _ ->
+        render(conn, "show.html", restaurant: restaurant)
+    end
   end
 
   def edit(conn, %{"id" => id}) do

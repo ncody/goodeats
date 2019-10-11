@@ -18,7 +18,7 @@
   </div>
   <div>
     <%= label f, :have_you_eaten_here %>
-    <%= select f, :tried, ["no", "yes", "want to try"] %>
+    <%= select f, :tried, restaurant_status_options() %>
     <%= error_tag f, :tried %>
   </div>
   <div class="form-group">

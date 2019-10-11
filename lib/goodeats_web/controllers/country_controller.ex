@@ -9,6 +9,7 @@ defmodule GoodeatsWeb.CountryController do
     render(conn, "index.html", countries: countries)
   end
 
+  @spec new(Plug.Conn.t(), any) :: Plug.Conn.t()
   def new(conn, _params) do
     changeset = Blog.change_country(%Country{})
     render(conn, "new.html", changeset: changeset)

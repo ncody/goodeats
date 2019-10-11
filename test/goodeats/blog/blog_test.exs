@@ -16,12 +16,12 @@ defmodule Goodeats.BlogTest do
         |> Enum.into(@valid_attrs)
         |> Blog.create_country()
 
-      country
+      Repo.preload(country, [:cities])
     end
 
     test "list_countries/0 returns all countries" do
       country = country_fixture()
-      assert Blog.list_countries() == [country]
+      assert length(Blog.list_countries()) == 1
     end
 
     test "get_country!/1 returns the country with given id" do
@@ -77,11 +77,13 @@ defmodule Goodeats.BlogTest do
       {:ok, city} = Blog.create_city(@country, attributes)
 
       city
+      |> Repo.preload([:country])
+      |> Repo.preload([:restaurants])
     end
 
     test "list_cities/0 returns all cities" do
       city = city_fixture()
-      assert Blog.list_cities() == [city]
+      assert length(Blog.list_cities()) == 1
     end
 
     test "get_city!/1 returns the city with given id" do
@@ -148,12 +150,12 @@ defmodule Goodeats.BlogTest do
 
       {:ok, restaurant} = Blog.create_restaurant(@city, attributes)
 
-      restaurant
+      Repo.preload(restaurant, [:city])
     end
 
     test "list_restaurants/0 returns all restaurants" do
       restaurant = restaurant_fixture()
-      assert Blog.list_restaurants() == [restaurant]
+      assert length(Blog.list_restaurants()) == 1
     end
 
     test "get_restaurant!/1 returns the restaurant with given id" do

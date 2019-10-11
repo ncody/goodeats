@@ -7,9 +7,11 @@
   <%= label f, :description %>
   <%= textarea f, :description %>
   <%= label f, :have_you_eaten_here %>
-  <%= select f, :tried, ["no", "yes", "want to try"] %>
+  <%= select f, :tried, restaurant_status_options() %>
   <%= error_tag f, :body %>
   <div>
     <%= submit "Save" %>
   </div>
 <% end %>
+
+<span><%= link "Back", to: country_city_path(@conn, :show, @city.country.id, @city.id) %></span>
