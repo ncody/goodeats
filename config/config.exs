@@ -17,6 +17,15 @@ config :goodeats, GoodeatsWeb.Endpoint,
   pubsub: [name: Goodeats.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :ex_aws,
+access_key_id: System.get_env("AWS_ACCESS_KEY_ID"),
+secret_access_key: System.get_env("AWS_SECRET_ACCESS_KEY"),
+s3: [
+ scheme: "https://",
+ host: "goodeats.s3.amazonaws.com",
+ region: "us-east-2"
+]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

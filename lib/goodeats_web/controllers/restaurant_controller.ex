@@ -1,8 +1,10 @@
 defmodule GoodeatsWeb.RestaurantController do
   use GoodeatsWeb, :controller
 
+
   alias Goodeats.Blog
   alias Goodeats.Blog.Restaurant
+  alias Goodeats.Repo
 
   def index(conn, %{"city_id" => city_id}) do
     city = Blog.get_city!(city_id)
@@ -82,4 +84,45 @@ defmodule GoodeatsWeb.RestaurantController do
         render(conn, "edit.html", restaurant: restaurant, changeset: changeset)
     end
   end
+
+# Upload images to S3 bucket
+def new_image(conn,%{"id" => id} = params) do
+  restaurant = Blog.get_restaurant!(id)
+  changeset = Restaurant.changeset(%Restaurant{})
+  render conn, "new_image.html", changeset: changeset, restaurant: restaurant
+end
+
+def create_image(conn, %{"id" => id, "restaurant" => %{"image" => image_params}} = params) do
+  IO.inspect(params, label: "params are")
+  IO.inspect(image_params, label: "image params are")
+  restaurant = Blog.get_restaurant!(id)
+  file_uuid = UUID.uuid4(:hex)
+  image_filename = image_params.filename
+  unique_filename = "#{file_uuid}-#{image_filename}"
+  {:ok, image_binary} = File.read(image_params.path)
+  bucket_name = System.get_env("BUCKET_NAME")
+  image =
+    ExAws.S3.put_object(bucket_name, unique_filename, image_binary)
+    |> IO.inspect(label: "pinging amazon")
+    |> ExAws.request!
+
+  IO.inspect(image, label: "image variable is")
+
+  # build the image url and add to the params to be stored
+  updated_params =
+    params["restaurant"]
+    |> IO.inspect(label: "updating map")
+    |> Map.update(image, image_params, fn _value -> "https://#{bucket_name}.s3.amazonaws.com/#{bucket_name}/#{unique_filename}" end)
+    IO.inspect(updated_params, label: "Updated params are")
+
+
+  case Blog.update_restaurant(restaurant, %{image_url: "https://#{bucket_name}.s3.amazonaws.com/#{bucket_name}/#{unique_filename}"}) do
+    {:ok, upload} ->
+        conn
+        |> put_flash(:info, "Image uploaded successfully!")
+        |> redirect(to: country_city_restaurant_path(conn, :show, restaurant.city.country.id, restaurant.city.id, restaurant.id))
+    {:error, changeset} ->
+        render conn, "new_image.html", changeset: changeset
+  end
+end
 end

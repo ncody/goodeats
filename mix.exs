@@ -33,14 +33,18 @@ defmodule Goodeats.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:ex_aws, "~> 1.0"},
+      {:hackney, "~> 1.6"},
       {:phoenix, "~> 1.3.4"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
+      {:poison, "~> 3.1.0"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:plug_cowboy, "~> 1.0"}
+      {:plug_cowboy, "~> 1.0"},
+      {:uuid, "~> 1.1" }
     ]
   end
 

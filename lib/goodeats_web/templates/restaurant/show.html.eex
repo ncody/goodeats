@@ -1,8 +1,10 @@
 <h1><%= @restaurant.name %></h1>
-<p>location: <%= @restaurant.city.name %>, <%= @restaurant.city.country.name %>
+<p>location: <%= @restaurant.city.name %>, <%= @restaurant.city.country.name %></p>
 <p>cuisine: <%= @restaurant.cuisine %></p>
-<p>description: <%= @restaurant.description %>
+<p>description: <%= @restaurant.description %></p>
 <%= display_rating(@restaurant) %>
+<img src=<%= @restaurant.image_url %> height="42" width="42"/>
+
 
 <span><%= link "Back", to: country_city_restaurant_path(@conn, :index, @restaurant.city.country.id, @restaurant.city) %></span>
 <span><%= link "Edit", to: country_city_restaurant_path(@conn, :edit, @restaurant.city.id, @restaurant.city.country.id, @restaurant.id) %></span>

@@ -22,6 +22,8 @@ defmodule GoodeatsWeb.Router do
     resources("/countries", CountryController) do
       resources("/cities", CityController) do
         resources("/restaurants", RestaurantController)
+        get("/restaurants/:id/image_url", RestaurantController, :new_image)
+        post("/restaurant/:id/image_url", RestaurantController, :create_image)
       end
     end
   end
