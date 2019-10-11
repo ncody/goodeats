@@ -4,7 +4,7 @@
   <ul>
   <%= for city <- @country.cities do %>
     <li>
-      <%= link city.name, to: country_city_path(@conn, :show, @country.id, city) %>
+      <%= link city.name, to: country_city_restaurant_path(@conn, :index, @country.id, city.id) %>
     </li>
   <% end %>
   </ul>

@@ -20,9 +20,7 @@ defmodule GoodeatsWeb.CityController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    city = Blog.get_city!(id)
-    restaurant_changeset = Blog.change_restaurant(%Restaurant{})
-    render(conn, "show.html", city: city, restaurant_changeset: restaurant_changeset)
+  def show(conn, %{"id" => id, "country_id" => country_id}) do
+    redirect(conn, to: country_city_restaurant_path(conn, :index, country_id, id))
   end
 end

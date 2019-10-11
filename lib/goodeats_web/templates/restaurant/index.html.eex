@@ -1,8 +1,25 @@
-<h2>All restaurants</h2>
+<h2><%= @city.name%> restaurants</h2>
 
-<%= for restaurant <- @restaurants do %>
-    <h1><%= @restaurant.name %></h1>
-    <p>location: <%= @restaurant.city.name %>, <%= @restaurant.city.country.name %>
-    <p>cuisine: <%= @restaurant.cuisine %></p>
-    <p>notes: <%= @restaurant.description %>
-<% end %>
+<h3>Restaurants you have tried:</h3>
+  <ul>
+    <%= for restaurant <- tried_restaurants(@restaurants) do %>
+      <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city%>
+      <p>your rating: <%= restaurant.rating %>
+    <% end %>
+  </ul>
+<h3>Restaurants you want to try:</h3>
+  <ul>
+    <%= for restaurant <- want_to_try_restaurants(@restaurants) do %>
+      <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city%>
+    <% end %>
+  </ul>
+<h3>Explore other restaurants in <%= @city.name %>:</h3>
+  <ul>
+    <%= for restaurant <- other_restaurants(@restaurants) do %>
+      <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city%>
+    <% end %>
+  </ul>
+
+<p>Can't find the restaurant you are looking for? <%= link "Add it here", to: country_city_restaurant_path(@conn, :new, @city.id, @city.country.id) %></p>
+
+<span><%= link "Back", to: country_path(@conn, :show, @city.country) %></span>

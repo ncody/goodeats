@@ -14,9 +14,8 @@
   <body>
     <div class="container">
       <header class="header">
-      <h1>goodeats</h1>
         <nav role="navigation">
-          <span><%= link "Home", to: country_path(@conn, :index) %></span>
+          <h1><%= link "goodeats", to: country_path(@conn, :index) %></h1>
         </nav>
       </header>
 

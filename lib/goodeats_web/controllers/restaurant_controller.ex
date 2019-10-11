@@ -4,6 +4,17 @@ defmodule GoodeatsWeb.RestaurantController do
   alias Goodeats.Blog
   alias Goodeats.Blog.Restaurant
 
+  def index(conn, %{"city_id" => city_id}) do
+    city = Blog.get_city!(city_id)
+    restaurant_changeset = Blog.change_restaurant(%Restaurant{})
+
+    render(conn, "index.html",
+      city: city,
+      restaurants: city.restaurants,
+      restaurant_changeset: restaurant_changeset
+    )
+  end
+
   def new(conn, %{"city_id" => city_id}) do
     city = Blog.get_city!(city_id)
     changeset = Blog.change_restaurant(%Restaurant{})

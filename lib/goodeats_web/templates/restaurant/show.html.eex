@@ -1,7 +1,7 @@
 <h1><%= @restaurant.name %></h1>
 <p>location: <%= @restaurant.city.name %>, <%= @restaurant.city.country.name %>
 <p>cuisine: <%= @restaurant.cuisine %></p>
-<p>notes: <%= @restaurant.description %>
+<%= display_rating(@restaurant.rating) %>
 
-<span><%= link "Back", to: country_city_path(@conn, :show, @restaurant.city.country.id, @restaurant.city) %></span>
+<span><%= link "Back", to: country_city_restaurant_path(@conn, :index, @restaurant.city.country.id, @restaurant.city) %></span>
 <span><%= link "Edit", to: country_city_restaurant_path(@conn, :edit, @restaurant.city.id, @restaurant.city.country.id, @restaurant.id) %></span>
