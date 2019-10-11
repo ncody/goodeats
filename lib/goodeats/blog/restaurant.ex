@@ -6,6 +6,7 @@ defmodule Goodeats.Blog.Restaurant do
     field(:cuisine, :string)
     field(:description, :string)
     field(:name, :string)
+    field(:image_url, :string)
     field(:rating, :integer, default: 0)
     field(:tried, :string, default: "no")
     belongs_to(:city, Goodeats.Blog.City)
@@ -16,7 +17,7 @@ defmodule Goodeats.Blog.Restaurant do
   @doc false
   def changeset(restaurant, attrs \\ %{}) do
     restaurant
-    |> cast(attrs, [:name, :cuisine, :description, :tried, :rating])
+    |> cast(attrs, [:name, :cuisine, :description, :image_url, :tried, :rating])
     |> validate_required([:name, :cuisine, :tried, :rating])
   end
 end
