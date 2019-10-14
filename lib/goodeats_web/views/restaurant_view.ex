@@ -33,4 +33,8 @@ defmodule GoodeatsWeb.RestaurantView do
   def other_restaurants(restaurants) do
     Enum.filter(restaurants, fn r -> r.tried == "no" end)
   end
+
+  def has_image?(restaurant) do
+    restaurant.image_url != nil
+  end
 end

@@ -1,6 +1,8 @@
 <h1><%= @restaurant.name %></h1>
 <p><%= @restaurant.city.name %>, <%= @restaurant.city.country.name %></p>
-<img src="<%= @restaurant.image_url %>" height="120" width="120">
+<%= if has_image?(@restaurant) do  %>
+    <img src="<%= @restaurant.image_url %>" height="120" width="120" alt="Restaurant photo">
+<% end %>
 <p>cuisine: <%= @restaurant.cuisine %></p>
 <p>description: <%= @restaurant.description %></p>
 <%= display_rating(@restaurant) %>
