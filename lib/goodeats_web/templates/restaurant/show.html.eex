@@ -1,9 +1,11 @@
 <h1><%= @restaurant.name %></h1>
-<p>location: <%= @restaurant.city.name %>, <%= @restaurant.city.country.name %></p>
+<p><%= @restaurant.city.name %>, <%= @restaurant.city.country.name %></p>
+<img src="<%= @restaurant.image_url %>" height="120" width="120">
 <p>cuisine: <%= @restaurant.cuisine %></p>
 <p>description: <%= @restaurant.description %></p>
 <%= display_rating(@restaurant) %>
-<img src=<%= @restaurant.image_url %> height="42" width="42"/>
+
+
 
 
 <span><%= link "Back", to: country_city_restaurant_path(@conn, :index, @restaurant.city.country.id, @restaurant.city) %></span>

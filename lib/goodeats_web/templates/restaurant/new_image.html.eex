@@ -1,9 +1,10 @@
+<h2>Add an image for <%= @restaurant.name %>
+
 <%= form_for @changeset, country_city_restaurant_path(@conn, :create_image, @restaurant.city.id, @restaurant.city.country.id, @restaurant.id), [multipart: true], fn f -> %>
   <div class="form-group">    
-    <%= label f, :image, class: "control-label" %>    
+    <%= label f, :image %>    
     <%= file_input f, :image, class: "form-control" %>    
     <%= error_tag f, :image %>  
   </div>
   <%= submit "Upload Image", class: "btn" %>
 <% end %>
-<p>HIHAHA</p>
