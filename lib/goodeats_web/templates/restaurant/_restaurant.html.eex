@@ -1,7 +1,7 @@
 <%= if has_image?(@restaurant) do  %>
     <img src="<%= @restaurant.image_url %>" height="120" width="120" alt="Restaurant photo">
 <% end %>
-<h4><%= link @restaurant.name, to: country_city_restaurant_path(@conn, :show, @city.id, @city.country.id, @restaurant.id) %></h4>
+<h4><%= link @restaurant.name, to: country_city_restaurant_path(@conn, :show, @city.country.id, @city.id, @restaurant.id) %></h4>
 <p>cuisine: <%= @restaurant.cuisine %></p>
 <p>desciption: <%= @restaurant.description %>
  

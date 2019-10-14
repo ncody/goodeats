@@ -20,6 +20,6 @@
     <% end %>
   </ul>
 
-<p>Can't find the restaurant you are looking for? <%= link "Add it here", to: country_city_restaurant_path(@conn, :new, @city.id, @city.country.id) %></p>
+<p>Can't find the restaurant you are looking for? <%= link "Add it here", to: country_city_restaurant_path(@conn, :new, @city.country.id, @city.id) %></p>
 
 <span><%= link "Back", to: country_path(@conn, :show, @city.country) %></span>
