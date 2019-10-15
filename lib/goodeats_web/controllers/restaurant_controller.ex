@@ -3,7 +3,6 @@ defmodule GoodeatsWeb.RestaurantController do
 
   alias Goodeats.Blog
   alias Goodeats.Blog.Restaurant
-  alias Goodeats.Repo
 
   def index(conn, %{"city_id" => city_id}) do
     city = Blog.get_city!(city_id)
@@ -85,7 +84,7 @@ defmodule GoodeatsWeb.RestaurantController do
   end
 
   # Upload images to S3 bucket
-  def new_image(conn, %{"id" => id} = params) do
+  def new_image(conn, %{"id" => id}) do
     restaurant = Blog.get_restaurant!(id)
     changeset = Restaurant.changeset(%Restaurant{})
     render(conn, "new_image.html", changeset: changeset, restaurant: restaurant)

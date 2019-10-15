@@ -2,7 +2,6 @@ defmodule GoodeatsWeb.CityController do
   use GoodeatsWeb, :controller
 
   alias Goodeats.Blog
-  alias Goodeats.Blog.Restaurant
 
   def create(conn, %{"country_id" => country_id, "city" => city_params}) do
     country = Blog.get_country!(country_id)
