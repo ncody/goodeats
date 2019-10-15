@@ -4,8 +4,8 @@ defmodule GoodeatsWeb.CountryController do
   alias Goodeats.Blog
   alias Goodeats.Blog.{Country, City}
 
-  def index(conn, _params) do
-    countries = Blog.list_countries()
+  def index(conn, params) do
+    countries = Blog.list_countries(params)
     render(conn, "index.html", countries: countries)
   end
 

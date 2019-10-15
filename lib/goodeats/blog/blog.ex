@@ -17,8 +17,12 @@ defmodule Goodeats.Blog do
       [%Country{}, ...]
 
   """
-  def list_countries do
-    Repo.all(Country)
+  def list_countries(params) do
+    search_term = get_in(params, ["query"])
+
+    Country
+    |> Country.search(search_term)
+    |> Repo.all()
   end
 
   @doc """

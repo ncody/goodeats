@@ -1,4 +1,8 @@
 <h2>Countries</h2>
+<%= form_for @conn, country_path(@conn, :index), [method: :get], fn f -> %>
+  <%= search_input f, :query %>
+  <%= submit "Search" %>
+<% end %>
 
 <table class="table">
   <thead>

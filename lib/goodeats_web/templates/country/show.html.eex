@@ -1,13 +1,22 @@
 <h2><%= @country.name%></h2>
 <%= if has_cities?(@country) do  %>
   <h3>Cities</h3>
-  <ul>
-  <%= for city <- sort_alphabetically(@country.cities) do %>
-    <li>
-      <%= link city.name, to: country_city_restaurant_path(@conn, :index, @country.id, city.id) %>
-    </li>
-  <% end %>
-  </ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for city <- sort_alphabetically(@country.cities) do %>
+          <tr>
+            <td><%= link city.name, to: country_city_restaurant_path(@conn, :index, @country.id, city.id) %></td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
 
 <h3>Add a City</h3>
