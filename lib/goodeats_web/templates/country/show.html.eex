@@ -2,7 +2,7 @@
 <%= if has_cities?(@country) do  %>
   <h3>Cities</h3>
   <ul>
-  <%= for city <- @country.cities do %>
+  <%= for city <- sort_alphabetically(@country.cities) do %>
     <li>
       <%= link city.name, to: country_city_restaurant_path(@conn, :index, @country.id, city.id) %>
     </li>

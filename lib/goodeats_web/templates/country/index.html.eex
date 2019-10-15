@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for country <- @countries do %>
+<%= for country <- sort_alphabetically(@countries) do %>
     <tr>
       <td><%= link country.name, to: country_path(@conn, :show, country)%></td>
 
