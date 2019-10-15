@@ -38,7 +38,7 @@ defmodule GoodeatsWeb.RestaurantViewTest do
       assert want_to_try_restaurants == [want_to_try_restaurant]
     end
 
-    test "other_restaurant/1 only returns restaurants with a 'no' in tried", %{
+    test "other_restaurants/1 only returns restaurants with a 'no' in tried", %{
       restaurants: restaurants,
       new_restaurant: new_restaurant
     } do

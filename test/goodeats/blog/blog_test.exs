@@ -19,9 +19,9 @@ defmodule Goodeats.BlogTest do
       Repo.preload(country, [:cities])
     end
 
-    test "list_countries/0 returns all countries" do
+    test "list_countries/1 returns all countries" do
       country = country_fixture()
-      assert length(Blog.list_countries()) == 1
+      assert length(Blog.list_countries(%{})) == 1
     end
 
     test "get_country!/1 returns the country with given id" do
