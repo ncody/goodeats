@@ -34,8 +34,10 @@ defmodule Goodeats.Mixfile do
   defp deps do
     [
       {:ex_aws, "~> 1.0"},
+      {:floki, ">= 0.0.0", only: :test},
       {:hackney, "~> 1.6"},
-      {:phoenix, "~> 1.3.4"},
+      {:phoenix, "~> 1.4.9"},
+      {:phoenix_live_view, "~> 0.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
       {:poison, "~> 3.1.0"},
@@ -44,7 +46,7 @@ defmodule Goodeats.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 1.0"},
-      {:uuid, "~> 1.1" }
+      {:uuid, "~> 1.1"}
     ]
   end
 
