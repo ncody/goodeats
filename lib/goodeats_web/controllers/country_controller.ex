@@ -3,10 +3,13 @@ defmodule GoodeatsWeb.CountryController do
 
   alias Goodeats.Blog
   alias Goodeats.Blog.{Country, City}
+  alias Phoenix.LiveView
+  alias GoodeatsWeb.CountryLive.Index
 
   def index(conn, params) do
     countries = Blog.list_countries(params)
-    render(conn, "index.html", countries: countries)
+    # render(conn, "index.html", countries: countries)
+    LiveView.Controller.live_render(conn, Index, session: %{countries: countries})
   end
 
   @spec new(Plug.Conn.t(), any) :: Plug.Conn.t()

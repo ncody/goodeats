@@ -1,5 +1,5 @@
 <h1><%= @restaurant.name %></h1>
-<p><%= @restaurant.city.name %>, <%= @restaurant.city.country.name %></p>
+<p>&#128205;<%= @restaurant.city.name %>, <%= @restaurant.city.country.name %></p>
 <%= if has_image?(@restaurant) do  %>
     <img src="<%= @restaurant.image_url %>" height="120" width="120" alt="Restaurant photo">
 <% end %>
