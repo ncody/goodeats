@@ -37,7 +37,7 @@ defmodule Goodeats.Mixfile do
       {:floki, ">= 0.0.0", only: :test},
       {:hackney, "~> 1.6"},
       {:phoenix, "~> 1.4.9"},
-      {:phoenix_live_view, "~> 0.3.0"},
+      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view", ref: "e4c6f71"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
       {:poison, "~> 3.1.0"},

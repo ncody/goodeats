@@ -1,6 +1,8 @@
 defmodule GoodeatsWeb.Router do
   use GoodeatsWeb, :router
 
+  # import Phoenix.LiveView.Router
+
   pipeline :browser do
     plug(:accepts, ["html"])
     plug(:fetch_session)

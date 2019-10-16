@@ -14,7 +14,10 @@ config :goodeats, GoodeatsWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "z4h34zS3dNOcC9+Xv1ZLzwAl+6msrC5Bh3bDZHLFb+R49Rv5sFVh7f5R2PmCwF6m",
   render_errors: [view: GoodeatsWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Goodeats.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Goodeats.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [
+    signing_salt: System.get_env("SECRET_SALT")
+  ]
 
 config :ex_aws,
   access_key_id: System.get_env("AWS_ACCESS_KEY_ID"),
