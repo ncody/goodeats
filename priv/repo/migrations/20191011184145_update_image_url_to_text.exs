@@ -3,7 +3,7 @@ defmodule Goodeats.Repo.Migrations.UpdateImageUrlToText do
 
   def change do
     alter table(:restaurants) do
-      modify :image_url, :text
+      modify(:image_url, :text)
     end
   end
 end

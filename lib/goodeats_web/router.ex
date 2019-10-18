@@ -22,6 +22,10 @@ defmodule GoodeatsWeb.Router do
 
     get("/", CountryController, :index)
 
+    resources("/users", UserController) do
+      resources("/user_restaurants", UserRestaurantController)
+    end
+
     resources("/countries", CountryController) do
       resources("/cities", CityController) do
         resources("/restaurants", RestaurantController)

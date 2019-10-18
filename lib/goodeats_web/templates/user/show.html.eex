@@ -1,0 +1,17 @@
+<h1><%= @user.username %>'s restaurants</h1>
+
+<h3>Restaurants you have tried</h3>
+<%= for users_restaurant <- tried_restaurants(@user.users_restaurants) do %>
+  <p><%= users_restaurant.notes %>
+  <p><%= users_restaurant.restaurant.name %>
+  <p><%= users_restaurant.restaurant.cuisine %>
+  <p><%= users_restaurant.restaurant.description %>
+<% end %>
+
+<h3>Restaurants you want to try</h3>
+<%= for users_restaurant <- want_to_try_restaurants(@user.users_restaurants) do %>
+  <p><%= users_restaurant.tried %>
+<% end %>
+
+<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
+<span><%= link "Back", to: user_path(@conn, :index) %></span>

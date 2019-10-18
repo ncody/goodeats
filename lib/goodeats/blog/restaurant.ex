@@ -7,9 +7,8 @@ defmodule Goodeats.Blog.Restaurant do
     field(:description, :string)
     field(:name, :string)
     field(:image_url, :string)
-    field(:rating, :integer, default: 0)
-    field(:tried, :string, default: "no")
     belongs_to(:city, Goodeats.Blog.City)
+    has_many(:users_restaurants, Goodeats.Account.UserRestaurant)
 
     timestamps()
   end
@@ -17,7 +16,7 @@ defmodule Goodeats.Blog.Restaurant do
   @doc false
   def changeset(restaurant, attrs \\ %{}) do
     restaurant
-    |> cast(attrs, [:name, :cuisine, :description, :image_url, :tried, :rating])
-    |> validate_required([:name, :cuisine, :tried, :rating])
+    |> cast(attrs, [:name, :cuisine, :description, :image_url])
+    |> validate_required([:name, :cuisine])
   end
 end
