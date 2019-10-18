@@ -13,5 +13,10 @@
   <p><%= users_restaurant.tried %>
 <% end %>
 
+<p>Look for new restaurants in....</p>
+<%= for country <- @countries do %>
+      <p><%= link country.name, to: country_path(@conn, :show, country)%></p>
+<% end %>
+
 <span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
 <span><%= link "Back", to: user_path(@conn, :index) %></span>

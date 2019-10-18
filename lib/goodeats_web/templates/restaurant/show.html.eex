@@ -5,10 +5,9 @@
 <% end %>
 <p>cuisine: <%= @restaurant.cuisine %></p>
 <p>description: <%= @restaurant.description %></p>
-<%= display_rating(@restaurant) %>
 
 
 
 <span><%= link "Back", to: country_city_restaurant_path(@conn, :index, @restaurant.city.country.id, @restaurant.city) %></span>
 <span><%= link "Edit", to: country_city_restaurant_path(@conn, :edit, @restaurant.city.country.id, @restaurant.city.id, @restaurant.id) %></span>
-<span><%= link "Add Image", to: country_city_restaurant_path(@conn, :new_image, @restaurant.city.country.id, @restaurant.city.id, @restaurant.id) %></span>
+<span><%= link "Add Image", to: country_city_restaurant_path(@conn, :new_image, @restaurant.city.country.id, @restaurant.city.id, @restaurant.id) %></span> 

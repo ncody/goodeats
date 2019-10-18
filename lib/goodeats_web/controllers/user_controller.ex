@@ -3,6 +3,7 @@ defmodule GoodeatsWeb.UserController do
 
   alias Goodeats.Account
   alias Goodeats.Account.User
+  alias Goodeats.Blog
 
   def index(conn, _params) do
     users = Account.list_users()
@@ -28,8 +29,8 @@ defmodule GoodeatsWeb.UserController do
 
   def show(conn, %{"id" => id}) do
     user = Account.get_user!(id)
-    IO.inspect(user, label: "user")
-    render(conn, "show.html", user: user)
+    countries = Blog.list_countries(%{})
+    render(conn, "show.html", user: user, countries: countries)
   end
 
   def edit(conn, %{"id" => id}) do

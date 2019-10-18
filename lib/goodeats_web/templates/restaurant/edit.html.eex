@@ -21,11 +21,6 @@
     <%= select f, :tried, restaurant_status_options() %>
     <%= error_tag f, :tried %>
   </div>
-  <div>
-    <%= label f, :rating %>
-    <%= select f, :rating, [1, 2, 3, 4, 5] %>
-    <%= error_tag f, :rating %>
-  </div>
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>

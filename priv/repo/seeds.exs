@@ -36,7 +36,7 @@ minneapolis =
     name: "Minneapolis"
   })
 
-restaurant =
+cruz_blanca =
   Repo.insert!(%Restaurant{
     name: "Cruz Blanca",
     cuisine: "Mexican",
@@ -45,10 +45,17 @@ restaurant =
   })
 
 Repo.insert!(%Restaurant{
-  name: "Picolo Sogno",
+  name: "Piccolo Sogno",
   cuisine: "Italian",
   city: chicago
 })
+
+somerset =
+  Repo.insert!(%Restaurant{
+    name: "Somerset",
+    cuisine: "American",
+    city: chicago
+  })
 
 Repo.insert!(%Restaurant{
   name: "Portafino",
@@ -61,9 +68,22 @@ user =
     username: "nicole"
   })
 
-user_restaurant =
-  Repo.insert!(%UserRestaurant{
-    user: user,
-    restaurant: restaurant,
-    tried: "no"
-  })
+Repo.insert!(%UserRestaurant{
+  user: user,
+  restaurant: cruz_blanca,
+  tried: "yes",
+  rating: 4
+})
+
+Repo.insert!(%UserRestaurant{
+  user: user,
+  restaurant: cruz_blanca,
+  tried: "yes",
+  rating: 4
+})
+
+Repo.insert!(%UserRestaurant{
+  user: user,
+  restaurant: somerset,
+  tried: "want to try"
+})
