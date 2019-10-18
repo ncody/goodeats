@@ -3,7 +3,7 @@ defmodule Goodeats.Repo.Migrations.CreateUsersRestaurants do
 
   def change do
     create table(:users_restaurants) do
-      add(:tried, :string, default: "no")
+      add(:tried, :boolean, default: false)
       add(:rating, :integer, default: 0)
       add(:notes, :text)
       add(:user_id, references(:users))

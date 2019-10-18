@@ -2,15 +2,18 @@
 
 <h3>Restaurants you have tried</h3>
 <%= for users_restaurant <- tried_restaurants(@user.users_restaurants) do %>
-  <p><%= users_restaurant.notes %>
-  <p><%= users_restaurant.restaurant.name %>
-  <p><%= users_restaurant.restaurant.cuisine %>
-  <p><%= users_restaurant.restaurant.description %>
+  <p><%= users_restaurant.restaurant.name %></p>
+  <p><%= users_restaurant.restaurant.cuisine %></p>
+  <p><%= users_restaurant.restaurant.description %></p>
+  <p><%= users_restaurant.notes %></p>
 <% end %>
 
 <h3>Restaurants you want to try</h3>
 <%= for users_restaurant <- want_to_try_restaurants(@user.users_restaurants) do %>
-  <p><%= users_restaurant.tried %>
+  <p><%= users_restaurant.restaurant.name %></p>
+  <p><%= users_restaurant.restaurant.cuisine %></p>
+  <p><%= users_restaurant.restaurant.description %></p>
+  <p><%= users_restaurant.notes %></p>
 <% end %>
 
 <p>Look for new restaurants in....</p>

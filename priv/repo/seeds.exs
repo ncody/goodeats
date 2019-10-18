@@ -71,19 +71,12 @@ user =
 Repo.insert!(%UserRestaurant{
   user: user,
   restaurant: cruz_blanca,
-  tried: "yes",
-  rating: 4
-})
-
-Repo.insert!(%UserRestaurant{
-  user: user,
-  restaurant: cruz_blanca,
-  tried: "yes",
+  tried: true,
   rating: 4
 })
 
 Repo.insert!(%UserRestaurant{
   user: user,
   restaurant: somerset,
-  tried: "want to try"
+  tried: false
 })

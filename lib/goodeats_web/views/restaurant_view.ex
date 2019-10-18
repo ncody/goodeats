@@ -22,18 +22,6 @@ defmodule GoodeatsWeb.RestaurantView do
     end
   end
 
-  def tried_restaurants(restaurants) do
-    Enum.filter(restaurants, fn r -> r.tried == "yes" end)
-  end
-
-  def want_to_try_restaurants(restaurants) do
-    Enum.filter(restaurants, fn r -> r.tried == "want to try" end)
-  end
-
-  def other_restaurants(restaurants) do
-    Enum.filter(restaurants, fn r -> r.tried == "no" end)
-  end
-
   def has_image?(restaurant) do
     restaurant.image_url != nil
   end

@@ -4,7 +4,7 @@ defmodule Goodeats.Account.UserRestaurant do
 
   schema "users_restaurants" do
     field(:rating, :integer, default: 0)
-    field(:tried, :string, default: "no")
+    field(:tried, :boolean, default: false)
     field(:notes, :string)
     belongs_to(:user, Goodeats.Account.User)
     belongs_to(:restaurant, Goodeats.Blog.Restaurant)
