@@ -1,25 +1,24 @@
 <h2><%= @city.name%> restaurants</h2>
 
 <h3>Restaurants you have tried:</h3>
-  <ul>
+<div class="grouped-restaurants">
     <%= for restaurant <- tried_restaurants(@restaurants) do %>
       <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city%>
       <%= display_rating(restaurant) %>
     <% end %>
-  </ul>
+</div>
 <h3>Restaurants you want to try:</h3>
-  <ul>
+<div class="grouped-restaurants">
     <%= for restaurant <- want_to_try_restaurants(@restaurants) do %>
       <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city%>
     <% end %>
-  </ul>
+</div>
 <h3>Explore other restaurants in <%= @city.name %>:</h3>
-  <ul>
+<div class="grouped-restaurants">
     <%= for restaurant <- other_restaurants(@restaurants) do %>
       <%= render "_restaurant.html", conn: @conn, restaurant: restaurant, city: @city%>
     <% end %>
-  </ul>
-
+</div>
 <p>Can't find the restaurant you are looking for? <%= link "Add it here", to: country_city_restaurant_path(@conn, :new, @city.country.id, @city.id) %></p>
 
 <span><%= link "Back", to: country_path(@conn, :show, @city.country) %></span>

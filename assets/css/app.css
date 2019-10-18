@@ -1,1 +1,7 @@
 /* This file is for your main application css. */
+
+.image-placeholder {
+    background-color: gray;
+    height: 120px;
+    width: 120px;
+}
